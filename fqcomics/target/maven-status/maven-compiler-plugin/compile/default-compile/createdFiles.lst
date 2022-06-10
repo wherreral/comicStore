@@ -1,0 +1,16 @@
+com\example\fqcomics\jpa\entities\PreVentaEntity.class
+com\example\fqcomics\FqcomicsApplication.class
+com\example\fqcomics\jpa\repository\PreVentaRepository.class
+com\example\fqcomics\FqcomicsApplication$PostConstructBean.class
+com\example\fqcomics\filters\CorsFilter.class
+com\example\fqcomics\jpa\repository\VentasRepository.class
+com\example\fqcomics\jpa\repository\InventarioRepository.class
+com\example\fqcomics\jpa\entities\InventarioEntity.class
+com\example\fqcomics\service\InventarioService.class
+com\example\fqcomics\filters\SecurityConfig.class
+com\example\fqcomics\controller\UIController.class
+com\example\fqcomics\controller\DataRestController.class
+com\example\fqcomics\TestVar.class
+com\example\fqcomics\service\PreVentaService.class
+com\example\fqcomics\FqcomicsApplication$MigrationLogic.class
+com\example\fqcomics\jpa\entities\VentasEntity.class
