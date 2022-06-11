@@ -3,7 +3,7 @@
  */
 
 //const HOST="http://192.168.100.4:8080";
-const HOST="http://localhost:8080";
+const HOST="https://fqcomics.herokuapp.com";
 
 document.addEventListener('DOMContentLoaded', function (event) {
   console.log('DOM fully loaded and parsed');
