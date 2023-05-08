@@ -1,6 +1,5 @@
 D:\GIT_WHERRERAL\comicStore\fqcomics\src\main\java\com\example\fqcomics\controller\DataRestController.java
 D:\GIT_WHERRERAL\comicStore\fqcomics\src\main\java\com\example\fqcomics\jpa\repository\InventarioRepository.java
-D:\GIT_WHERRERAL\comicStore\fqcomics\src\main\java\com\example\fqcomics\filters\SecurityConfig.java
 D:\GIT_WHERRERAL\comicStore\fqcomics\src\main\java\com\example\fqcomics\FqcomicsApplication.java
 D:\GIT_WHERRERAL\comicStore\fqcomics\src\main\java\com\example\fqcomics\service\PreVentaService.java
 D:\GIT_WHERRERAL\comicStore\fqcomics\src\main\java\com\example\fqcomics\jpa\entities\PreVentaEntity.java
@@ -10,5 +9,6 @@ D:\GIT_WHERRERAL\comicStore\fqcomics\src\main\java\com\example\fqcomics\jpa\repo
 D:\GIT_WHERRERAL\comicStore\fqcomics\src\main\java\com\example\fqcomics\controller\UIController.java
 D:\GIT_WHERRERAL\comicStore\fqcomics\src\main\java\com\example\fqcomics\jpa\entities\VentasEntity.java
 D:\GIT_WHERRERAL\comicStore\fqcomics\src\main\java\com\example\fqcomics\jpa\entities\InventarioEntity.java
+D:\GIT_WHERRERAL\comicStore\fqcomics\src\main\java\com\example\fqcomics\utils\ComicUtils.java
 D:\GIT_WHERRERAL\comicStore\fqcomics\src\main\java\com\example\fqcomics\TestVar.java
 D:\GIT_WHERRERAL\comicStore\fqcomics\src\main\java\com\example\fqcomics\service\InventarioService.java

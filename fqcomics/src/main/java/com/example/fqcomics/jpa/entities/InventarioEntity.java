@@ -15,6 +15,7 @@ public class InventarioEntity {
 	private String editorial;
 	private String isbn;
 	private String nombre;
+	private String nombreCorto;
 	private String autor;
 	private Integer cantidad;
 	private Double precioCosto;
@@ -24,12 +25,13 @@ public class InventarioEntity {
 	
 	public InventarioEntity(){};
 	
-	public InventarioEntity( String editorial, String isbn, String nombre, String autor, Integer cantidad, Double precioCosto,
+	public InventarioEntity( String editorial, String isbn, String nombre, String nombreCorto, String autor, Integer cantidad, Double precioCosto,
 			Double precioPiso) {
 		super();
 		this.editorial=editorial;
 		this.isbn = isbn;
 		this.nombre = nombre;
+		this.nombreCorto = nombreCorto;
 		this.autor = autor;
 		this.cantidad = cantidad;
 		this.precioCosto = precioCosto;
@@ -109,8 +111,13 @@ public class InventarioEntity {
 	public void setEditorial(String editorial) {
 		this.editorial = editorial;
 	}
-	
-	
-	
+
+	public String getNombreCorto() {
+		return nombreCorto;
+	}
+
+	public void setNombreCorto(String nombreCorto) {
+		this.nombreCorto = nombreCorto;
+	}
 	
 }

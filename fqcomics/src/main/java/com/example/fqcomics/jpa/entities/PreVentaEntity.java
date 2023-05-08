@@ -2,8 +2,10 @@ package com.example.fqcomics.jpa.entities;
 
 
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,10 +17,18 @@ import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Formula;
 import org.springframework.data.annotation.Transient;
 
 @Entity
-public class PreVentaEntity {
+public class PreVentaEntity  implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -34,13 +44,14 @@ public class PreVentaEntity {
  
 	@PostPersist
 	protected void onPost() {
-		DecimalFormat myFormatter = new DecimalFormat("ORD000000");
-	    orderId = myFormatter.format(id);
+		//DecimalFormat myFormatter = new DecimalFormat("ORD000000");
+	    //orderId = myFormatter.format(id);
 	    total = cantidad * precioVentaReal;
 	}
 
 	private String isbn;
 	private String nombre;
+	private String nombreCorto;
 	private String orderId;
 	private Integer cantidad;
 	private Double precioVentaReal;
@@ -122,6 +133,43 @@ public class PreVentaEntity {
 	public void setVendedor(String vendedor) {
 		this.vendedor = vendedor;
 	}
+
+	@Override
+	public String toString() {
+		return "PreVentaEntity [id=" + id + ", created=" + created + ", isbn=" + isbn + ", nombre=" + nombre
+				+ ", orderId=" + orderId + ", cantidad=" + cantidad + ", precioVentaReal=" + precioVentaReal
+				+ ", total=" + total + ", cliente=" + cliente + ", vendedor=" + vendedor + ", despacho=" + despacho
+				+ ", pagado=" + pagado + ", nombreCorto=" + nombreCorto +"]";
+	}
+
+	
+	public String getNombreCorto() {
+		return nombreCorto;
+	}
+
+	public void setNombreCorto(String nombreCorto) {
+		this.nombreCorto = nombreCorto;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(isbn);
+	}
+
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof PreVentaEntity)) {
+			return false;
+		}
+		PreVentaEntity other = (PreVentaEntity) obj;
+		return Objects.equals(isbn, other.isbn);
+	}
+	
 	
 	
 }

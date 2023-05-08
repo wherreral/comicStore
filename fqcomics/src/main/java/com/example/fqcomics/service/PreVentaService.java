@@ -31,23 +31,22 @@ public class PreVentaService {
 			System.out.println("Error: Stock Validation");
 			return null;
 		}
-		else
-		{
-			//Update Stock
-			ie.get(0).setCantidad(stock - newPreventa.getCantidad());
-			inventarioRepository.save(ie.get(0));
-		}
+		
+		//Update Stock
+		//ie.get(0).setCantidad(stock - newPreventa.getCantidad());
+		//inventarioRepository.save(ie.get(0));
 		
 		//Validate Precio
-		if(newPreventa.getPrecioVentaReal()==null || newPreventa.getPrecioVentaReal()<=0d) {
+		if(newPreventa.getPrecioVentaReal()==null || newPreventa.getPrecioVentaReal()<=0d 
+				|| newPreventa.getPrecioVentaReal().isNaN()) {
 			//List<InventarioEntity> ie = inventarioRepository.findByIsbn(newPreventa.getIsbn());
 			newPreventa.setPrecioVentaReal(ie.get(0).getPrecioPiso());
 		}
 		
 		//Save 
-		PreVentaEntity saved = preVentaRepository.save(newPreventa);
+		//PreVentaEntity saved = preVentaRepository.save(newPreventa);
 		
-		System.out.println("Order id:"+saved.getOrderId());
+		//System.out.println("Order id:"+saved.getOrderId());
 		
 		return newPreventa;
 	}

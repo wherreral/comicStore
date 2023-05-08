@@ -6,10 +6,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
+//import org.springframework.session.web.http.CookieSerializer;
+//import org.springframework.session.web.http.DefaultCookieSerializer;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 public class FqcomicsApplication {
@@ -43,4 +49,24 @@ public class FqcomicsApplication {
 		}
 		
 	}
+	
+	@Configuration
+	public class WebConfiguration implements WebMvcConfigurer {
+
+	    @Override
+	    public void addCorsMappings(CorsRegistry registry) {
+	        registry.addMapping("/**").allowedMethods("*");
+	    }
+	}
+	
+
+	
+//	@Bean
+//	public CookieSerializer cookieSerializer() {
+//	    DefaultCookieSerializer serializer = new DefaultCookieSerializer();
+//	    serializer.setCookieName("SESSIONID");
+//	    serializer.setCookiePath("/");
+//	    serializer.setDomainNamePattern("^.+?\\.(\\w+\\.[a-z]+)$");
+//	    return serializer;
+//	}
 }

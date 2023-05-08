@@ -1,5 +1,6 @@
 package com.example.fqcomics.jpa.repository;
 
+
 import org.springframework.stereotype.Repository;
 
 import com.example.fqcomics.jpa.entities.InventarioEntity;

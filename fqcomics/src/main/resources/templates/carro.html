@@ -1,0 +1,156 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title >CARRO DE COMPRA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/javascript" defer="true" th:src="@{func.js}"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+<script th:inline="javascript">
+/*<![CDATA[*/
+    var API_HOST = /*[[${api_host}]]*/ 'default';
+    console.log(API_HOST);
+/*]]>*/
+</script>
+
+</head>
+<body>
+
+<div class="container">
+
+
+	<div class="row">
+		<div class="col-sm-4">
+			<label for="" class="form-label fw-bolder" onclick="volverAProductos()">VOLVER</label>
+		</div>
+	</div>
+	<div th:if="${pve.empty}">
+            <td colspan="2"> No Books Available </td>
+    </div>
+
+
+	<div th:unless="${pve.empty}">
+
+	<div class="row">
+		<div class="col-4 col-sm-2">
+			<label for="" class="form-label bold">NUM ORDEN:</label>
+		</div>
+		<div class="col-1 col-sm-2">
+			<span th:text="${oi}">tv</span></h2>
+		</div>
+	</div>
+	
+	
+	<div class="row">
+		<div class="d-none d-sm-block col-2 col-sm-2">
+			<label for="" class="control-label fw-bolder">ISBN</label>
+		</div>
+		<div class=" col-4 col-sm-4">
+			<label for="" class="form-label fw-bolder">NOMBRE</label>
+		</div>
+		<div class="col-2 col-sm-2">
+			<label for="" class="form-label fw-bolder">PRECIO UNI</label>
+		</div>
+		<div class="col-2 col-sm-2">
+			<label for="" class="form-label fw-bolder">CANT</label>
+		</div>
+		<div class="col-2 col-sm-2">
+			<label for="" class="form-label fw-bolder">TOTAL</label>
+		</div>
+	</div>
+
+	<div class="row" th:each="preventa : ${pve}">
+		<div class="d-none d-sm-block col-2 col-sm-2">
+			<span th:text="${preventa.isbn}"> Author </span>
+		</div>
+		<div class="col-4 col-sm-4">
+			<span th:text="${preventa.nombreCorto}"> Title </span>
+		</div>
+		<div class="col-2 col-sm-2">
+			<span th:text="${preventa.precioVentaReal}"> Author </span>
+		</div>
+		<div class="col-2 col-sm-2">
+			<span th:text="${preventa.cantidad}"> Author </span>
+		</div>
+		<div class="col-2 col-sm-2">
+			<span th:text="${preventa.total}"> Author </span>
+		</div>
+	</div>
+	<br /><br />
+	<div class="row">
+		<div class="col-4 col-sm-2">
+			<label for="" class="form-label fw-bolder">COSTO DESPACHO:</label>
+		</div>
+		<div class="col-3 col-sm-2">
+		<label for="" class="form-label">$</label>
+			
+		</div>
+		<div class="col-4 col-sm-2">
+			<input type="text" id="despacho" class="form-control" />
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-4 col-sm-2">
+			<label for="" class="form-label fw-bolder">TOTAL VENTA:</label>
+		</div>
+		<div class="col-3 col-sm-2">
+		<label for="" class="form-label">$</label>
+			<span th:text="${tv}">tv</span>
+		</div>
+		<div class="col-4 col-sm-2">
+			<input type="text" id="newtotal" class="form-control" />
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm-2">
+			<hr class="my-4">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-4">
+			<button type="submit" class="w-100 btn btn-primary btn-lg" placeholder="GUARDAR"  value="GUARDAR" onclick="confirmCart()"/>GUARDAR</button>
+		</div>
+	</div>
+	
+	</div>
+<!-- 	<table th:unless="${pve.empty}"> -->
+    
+<!--     <tbody> -->
+        
+<!--         <tr  th:each="preventa : ${pve}"> -->
+            
+<!--             <td><span th:text="${preventa.isbn}"> Author </span></td> -->
+<!--             <td><span th:text="${preventa.nombre}"> Title </span></td> -->
+<!--             <td><span th:text="${preventa.precioVentaReal}"> Author </span></td> -->
+<!--             <td><span th:text="${preventa.cantidad}"> Author </span></td> -->
+<!--             <td><span th:text="${preventa.total}"> Author </span></td> -->
+            
+<!--         </tr> -->
+<!--         <tr> -->
+<!--         	<td><br></td> -->
+<!--         </tr> -->
+<!--         <tr> -->
+<!--         	<td>TOTAL VENTA</td> -->
+<!--         	<td><span th:text="${tv}">tv</span></td> -->
+<!--         	<td><input type="text" id="newtotal" class="form-control" /></td> -->
+<!--         </tr> -->
+<!--         <tr> -->
+<!--         	<td>NUMERO ORDEN</td> -->
+<!--         	<td><span th:text="${oi}">tv</span></td> -->
+<!--         </tr> -->
+<!--         <tr> -->
+<!--         	<td><hr class="my-4"> -->
+<!-- 			<button type="submit" class="w-100 btn btn-primary btn-lg" placeholder="GUARDAR"  value="GUARDAR" onclick="confirmCart()"/>GUARDAR</button></td> -->
+<!--         </tr> -->
+<!--     </tbody> -->
+<!-- 	</table> -->
+	
+	
+	
+</div>
+
+</body>
+</html>

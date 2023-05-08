@@ -10,40 +10,6 @@
 <body>
 
 <div class="container">
-
-	<table>
-    <thead>
-        <tr>
-            <th> Numero Orden </th>
-            <th> Pagado </th>
-            <th> ISBN </th>
-            <th> NOMBRE </th>
-            <th> PRECIO VENTA</th>
-            <th> TOTAL</th>
-            <th> VENDEDOR</th>
-            <th> PAGAR</th>
-            <th> CANCELAR</th>
-        </tr>
-    </thead>
-    <tbody>
-		<tr th:if="${pvl.empty}">
-            <td colspan="2"> No Books Available </td>
-        </tr>
-        <tr th:each="preventa : ${pvl}">
-        	<td><span id="id" th:text="${preventa.orderId}"> Author </span></td>
-            <td><span th:text="${preventa.pagado}"> Author </span></td>
-            <td><span th:text="${preventa.nombre}"> Title </span></td>
-            <td><span th:text="${preventa.isbn}"> Author </span></td>
-            <td><span th:text="${preventa.precioVentaReal}"> Author </span></td>
-            <td><span th:text="${preventa.total}"> Author </span></td>
-            <td><span th:text="${preventa.vendedor}"> Author </span></td>
-            <td> <button type="submit" th:attr="onclick=|payed('${preventa.id}')|">PAGADO</button> </td>
-            <td> <button type="submit" onClick="cancel()">CANCELAR</button> </td>
-        	
-        	
-        </tr>
-    </tbody>
-	</table>
 	
 	<br/>
 	

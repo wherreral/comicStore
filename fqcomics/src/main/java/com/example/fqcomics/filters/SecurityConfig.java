@@ -1,5 +1,6 @@
 package com.example.fqcomics.filters;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,22 +26,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     	 		.csrf().disable().authorizeRequests()
     	 		//.headers().frameOptions().disable()
                 .antMatchers(HttpMethod.GET, "/inventory/all").permitAll()
+                .antMatchers(HttpMethod.GET, "/error").permitAll()
                 .antMatchers(HttpMethod.GET, "/inventory/*").permitAll()
                 .antMatchers(HttpMethod.POST, "/presale/save").permitAll()
                 .antMatchers(HttpMethod.POST, "/presale/payed").permitAll()
-                .antMatchers(HttpMethod.GET, "/ventas").permitAll()
-                .antMatchers(HttpMethod.GET, "/preventas").permitAll()
+                //.antMatchers(HttpMethod.GET, "/ventas").permitAll()
+                .antMatchers(HttpMethod.GET, "/productos").permitAll()
+                .antMatchers(HttpMethod.GET, "/carro").permitAll()
+                //.antMatchers(HttpMethod.GET, "/preventas").permitAll()
                 .antMatchers(HttpMethod.GET, "/func.js").permitAll()
+                .antMatchers(HttpMethod.GET, "/main.css").permitAll()
                 .antMatchers(HttpMethod.GET, "/h2-console/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/h2-console/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class)
                 // this disables session creation on Spring Security
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
+                .sessionFixation().none();
     }
 
-        
+	
   @Bean
   CorsConfigurationSource corsConfigurationSource() {
     final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

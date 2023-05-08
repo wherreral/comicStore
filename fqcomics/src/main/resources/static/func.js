@@ -2,8 +2,10 @@
  * 
  */
 
+
+const HOST="http://laptop.mydomain:8080";
 //const HOST="http://192.168.100.4:8080";
-const HOST="https://fqcomics.herokuapp.com";
+//const HOST="https://fqcomics.herokuapp.com";
 
 document.addEventListener('DOMContentLoaded', function (event) {
   console.log('DOM fully loaded and parsed');
@@ -24,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 		
 				for(var i = 0; i < myObject.length; i++) {
 				    var obj = myObject[i];
-				    console.log(obj.nombre);
+				    console.log(obj.nombreCorto);
 					
 					var newOptionElement = document.createElement("option");
 			  		newOptionElement.textContent = myObject[i].nombre;
@@ -33,13 +35,62 @@ document.addEventListener('DOMContentLoaded', function (event) {
 				}
             }
         }
-        xmlHttp.open("GET", HOST+"/inventory/all");
+		console.log(API_HOST);
+		console.log("jsessionid"+getJSessionId());
+		//let url = API_HOST+"/inventory/all?JSESSIONID=1"
+		var url = new URL(API_HOST+"/inventory/all?JSESSIONID=1");
+        url.searchParams.set('JSESSIONID', getJSessionId());
+		
+		xmlHttp.open("GET", url);
+		//xmlHttp.setRequestHeader('JSESSIONID', 'QWEQWEQWE');
 		//xmlHttp.setRequestHeader('Access-Control-Allow-Private-Network', 'true'); 
         xmlHttp.send(); 
 });
 
+
+function getJSessionId(){
+	//alert(document.cookie.match(/JSESSIONID=[^;]+/));
+    var jsId = document.cookie.match(/JSESSIONID=[^;]+/);
+    if(jsId != null) {
+        if (jsId instanceof Array)
+            jsId = jsId[0].substring(11);
+        else
+            jsId = jsId.substring(11);
+    }
+    return jsId;
+}
+
 function test(){
 	console.log("test");
+}
+
+function confirmCart(){
+
+		console.log('confirmar carro');
+		var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function()
+        {
+            if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            {
+				console.log('save response '+xmlHttp.responseText);
+				if(xmlHttp.responseText){
+					alert("yuju!");
+					window.location.replace("/productos");
+				}
+            }
+        }
+        xmlHttp.open("POST", API_HOST+"/presale/payed"); 
+		//xmlHttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    	xmlHttp.setRequestHeader('Content-Type', 'application/json');
+		
+		var obj = new Object();
+		//console.log("id "+document.getElementById("id").innerText)
+		//console.log("id "+document.getElementById("id").value)
+		
+		obj.newtotal = document.getElementById("newtotal").value;
+		obj.despacho = document.getElementById("despacho").value;
+		var jsonString= JSON.stringify(obj);
+    	xmlHttp.send(jsonString);
 }
 
 
@@ -107,9 +158,14 @@ function onInput() {
 				document.getElementById("stock").value = myObject[0].cantidad;
 				document.getElementById("edi").value = myObject[0].editorial;
 				document.getElementById("name").value = myObject[0].nombre;
+				document.getElementById("nombreCorto").value = myObject[0].nombreCorto;
             }
         }
-        xmlHttp.open("GET", HOST+"/inventory/"+val); 
+        
+		var url = new URL(API_HOST+"/inventory/"+val+"?JSESSIONID=1");
+        url.searchParams.set('JSESSIONID', getJSessionId());
+		xmlHttp.open("GET", url);
+		
         xmlHttp.send();
 		//
 		
@@ -121,8 +177,17 @@ function onInput() {
     }
   }
 
+
+function volverAProductos(){
+	window.location.replace("/productos");
+}
+
 function guardar(){
 	console.log('guardar');
+	if(document.getElementById("stock").value == 0){
+		return alert('Sin Stock')
+	}
+	
 	var xmlHttp = new XMLHttpRequest();
         xmlHttp.onreadystatechange = function()
         {
@@ -134,23 +199,39 @@ function guardar(){
 				}else{
 					var myObject = JSON.parse(xmlHttp.responseText);
 					console.log(myObject.orderId);
-					onInput();
+					
+					//update stock
+					
+					//onInput();
+					document.getElementById("stock").value = document.getElementById("stock").value - document.getElementById("cantidad").value; 
+					
 					let orderInfo = "Tu número de orden es: "+myObject.orderId; 
-					if (confirm(orderInfo)) {
-					    txt = "You pressed OK!";
+					//if (confirm(orderInfo)) {
+					 //   txt = "You pressed OK!";
+					//	//
+					//	copyText(orderInfo);
 						//
-						copyText(orderInfo);
-						//
-					} else {
-					    txt = "You pressed Cancel!";
-					}
+					//} else {
+					 //   txt = "You pressed Cancel!";
+					//}
+					
+					//update cart quantity
+					var badge = document.getElementById("cart_amount");
+					console.log("badge:"+badge);
+					let value = badge.getAttribute("value");
+					console.log("value:"+value);
+					//badge.value = badge.value + 1;
+					badge.setAttribute("value",parseInt(value) + 1); 
+					
 				}
 				
 				//document.getElementById("stock").value = myObject.cantidad;
 				
             }
         }
-        xmlHttp.open("POST", HOST+"/presale/save"); 
+		var url = new URL(API_HOST+"/presale/save?JSESSIONID=1");
+        url.searchParams.set('JSESSIONID', getJSessionId());
+        xmlHttp.open("POST", url); 
 		//xmlHttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     	xmlHttp.setRequestHeader('Content-Type', 'application/json');
 		
@@ -161,6 +242,8 @@ function guardar(){
 		obj.precioVentaReal = document.getElementById("pvr").value;
 		obj.vendedor = document.getElementById("salesman").value;
 		obj.cliente = document.getElementById("cliente").value;
+		obj.nombreCorto = document.getElementById("nombreCorto").value;
+		console.log(document.getElementById("nombreCorto").value);
    		var jsonString= JSON.stringify(obj);
     	xmlHttp.send(jsonString);
         

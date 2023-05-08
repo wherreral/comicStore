@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title >PreVentas</title>
+<title >Ventas</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <script type="text/javascript" defer="true" th:src="@{func.js}"></script>
@@ -12,125 +12,45 @@
 
 <div class="container">
 
-	<div class="row">
-		<div class="col-sm-4">
-			<label for="" class="form-label">INGRESAR VENTAS</label>
+	
+	<div class="row border">
+		<div class="col-3 col-sm-2">
+			<label for="" class="form-label fw-bolder">FECHA</label>
 		</div>
-		<div class="col"></div>
-	</div>
-	<div class="row">
-		<div class="col-sm-4">
-			<label for="combobox" class="form-label">SELECCIONAR</label>
+		<div class="col-3 col-sm-2">
+			<label for="" class="form-label fw-bolder">NUM ORDEN</label>
 		</div>
-		<div class="col"></div>
-	</div>
-	<div class="row">
-		<div class="col-sm-4">
-			<input type="text" class="form-select" oninput='onInput()' list="combo-options" id="combobox">
-			<datalist id="combo-options" name="combo-options"></datalist>
+		<div class="col-2 col-sm-2">
+			<label for="" class="form-label fw-bolder">TOTAL</label>
 		</div>
-		<div class="col-sm-8">	
-			<button onClick='onClearSelected()' id="clear">X</button>
+		<div class="col-2 col-sm-2">
+			<label for="" class="form-label fw-bolder">VENDEDOR</label>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-sm-4">
-			<label for="name" class="form-label">NOMBRE</label>
+
+	<div class="row border" th:each="venta : ${lv}">
+		<div class="col-3 col-sm-2">
+			<span th:text="${#dates.format(venta.created, 'dd-MM-yy HH:mm')}"> Author </span>
 		</div>
-		<div class="col">	
-			<input type="text" class="form-control" id="name" readonly="true" />
+		<div class="col-3 col-sm-2">
+			<span th:text="${venta.orderId}"> Author </span>
 		</div>
+		<div class="col-2 col-sm-4">
+			<span th:text="${venta.total}"> Title </span>
+		</div>
+		<div class="col-2 col-sm-2">
+			<span th:text="${venta.vendedor}"> Author </span>
+		</div>
+		
+		
 	</div>
-	<div class="row">
-		<div class="col-sm-4">
-			<label for="isbn" class="form-label">ISBN</label>
+    <div class="row border">
+		<div class="col-3 col-sm-2">
+			<label>VENTAS TOTALES</label><span th:text="${ventasTotales}"> Title </span>
 		</div>
-		<div class="col">	
-			<input type="text" class="form-control" id="isbn" readonly="true" />
-		</div>
+		
 	</div>
-	<div class="row">
-		<div class="col-sm-4">
-			EDITORIAL
-		</div>
-		<div class="col">	
-			<input type="text" class="form-control" id="edi" readonly="true" />
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-4">
-			STOCK
-		</div>
-		<div class="col">	
-			<input type="text" class="form-control" id="stock" readonly/>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-4">
-			PRECIO VENTA SUGERIDO
-		</div>
-		<div class="col">	
-			<input type="text" class="form-control" id="pvp" readonly/>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-4">
-			PRECIO VENTA REAL
-		</div>
-		<div class="col">	
-			<input type="text" class="form-control" id="pvr" required>
-			<div class="invalid-feedback">Security code required</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-4">
-			COSTO DESPACHO
-		</div>
-		<div class="col">	
-			<input type="text" class="form-control" id="despacho" />
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-4">
-			CLIENTE
-		</div>
-		<div class="col">	
-			<input type="text" id="cliente" class="form-control" />
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-4">
-			CANTIDAD
-		</div>
-		<div class="col">	
-			<select class="form-select" id="cantidad">
-				<option selected value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-			</select>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-sm-4">
-			VENDEDOR
-		</div>
-		<div class="col">	
-			<select class="form-select" id="salesman">
-				<option selected value="Marco">Marco</option>
-				<option value="Will">Will</option>
-			</select>
-		</div>	
-	</div>
-	<div class="row">
-		<div class="col-sm-4">
-			
-		</div>
-		<div class="col">	
-			<hr class="my-4">
-			<button type="submit" class="w-100 btn btn-primary btn-lg" placeholder="GUARDAR"  value="GUARDAR" onclick="guardar()"/>GUARDAR</button>
-		</div>	
-	</div>
+    
 	
 	<!-- <table>		
 		<tr>

@@ -29,8 +29,16 @@ public class VentasEntity {
 		this.vendedor = pve.getVendedor();
 	}
 	
-	
-	
+
+	public VentasEntity(String orderId, Double precioVentaReal,Double total, String vendedor) {
+		super();
+		this.orderId = orderId;
+		this.precioVentaReal = precioVentaReal;
+		this.total = total;
+		this.vendedor = vendedor;
+	}
+
+
 	@PrePersist
 	protected void onCreate() {
 		created = new Date();
@@ -100,6 +108,16 @@ public class VentasEntity {
 	}
 	public void setNumTransferencia(String numTransferencia) {
 		this.numTransferencia = numTransferencia;
+	}
+
+
+	public Date getCreated() {
+		return created;
+	}
+
+
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 	
 	
