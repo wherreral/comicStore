@@ -3,6 +3,8 @@
 
 i { cursor: pointer; }
 
+.detail{ cursor: pointer; }
+
 .badge:after{
 content:attr(value);
 font-size:18px;

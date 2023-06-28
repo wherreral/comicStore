@@ -11,4 +11,5 @@ import com.example.fqcomics.jpa.entities.PreVentaEntity;
 public interface PreVentaRepository extends JpaRepository<PreVentaEntity, Long> {
 
 	public List<PreVentaEntity> findByPagadoFalse();
+	public List<PreVentaEntity> findByOrderId(String orderId);
 }

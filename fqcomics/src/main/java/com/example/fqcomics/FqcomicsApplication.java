@@ -17,6 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.example.fqcomics.utils.MyPrintStream;
+
 @SpringBootApplication
 public class FqcomicsApplication {
 
@@ -45,7 +47,9 @@ public class FqcomicsApplication {
 		@Override
 		public void onApplicationEvent(ContextRefreshedEvent event) {
 			// TODO Auto-generated method stub
+			System.setOut(new MyPrintStream(System.out));
 			System.out.println("EMPEZANDO");
+			
 		}
 		
 	}

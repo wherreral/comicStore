@@ -30,6 +30,7 @@ import com.example.fqcomics.jpa.repository.InventarioRepository;
 import com.example.fqcomics.jpa.repository.PreVentaRepository;
 import com.example.fqcomics.jpa.repository.VentasRepository;
 import com.example.fqcomics.service.PreVentaService;
+import com.example.fqcomics.utils.MyPrintStream;
 
 @RestController
 @Scope("session")
@@ -75,6 +76,33 @@ public class DataRestController {
 		
 	    return ie;
 	}
+
+	@GetMapping("/ventas/detalles/{orderId}") 
+	List<PreVentaEntity> returnOrderDetail(@PathVariable String orderId,HttpServletRequest req, HttpServletResponse response) 
+	{
+		System.out.println("Inside /ventas/detalles/ =>"+orderId);
+		
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		HttpSession session= attr.getRequest().getSession(false);
+		
+	    List<PreVentaEntity> detailsList = preVentaRepository.findByOrderId(orderId);
+	 
+	    if(detailsList.size() == 0)
+	    		return null;
+	    System.out.println("Inside /ventas/detalles/ =>"+req.getSession().getId());
+		System.out.println("Inside /ventas/detalles/ =>"+session.getId());
+		
+		Cookie cookie = new Cookie("JSESSIONID", session.getId());
+		cookie.setMaxAge(7 * 24 * 60 * 60);
+		cookie.setHttpOnly(true);
+		cookie.setPath("/");
+		response.addCookie(cookie);
+		
+		
+		
+	    return detailsList;
+	}
+	
 	
 	
 	/*
