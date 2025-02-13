@@ -182,6 +182,46 @@ function volverAProductos(){
 	window.location.replace("/productos");
 }
 
+
+function searchDetail(text){
+	console.log('searchDetail');
+	console.log('searchDetail:'+text);
+	
+	//let searchDetail = document.getElementById("searchDetail").text;
+	//console.log('searchDetail:'+searchDetail);
+	
+	
+	console.log("buscar nombre");
+	var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function()
+    {
+        if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+        {
+            console.log(xmlHttp.responseText);
+			var json = JSON.parse(xmlHttp.responseText);
+			var info="DETALLES VENTA <br />";
+			for(var i=0;i<json.length;i++)
+			{
+				//console.log('isbn:'+json[i].isbn+'\n'+json[i].nombre+'|'+json[i].cantidad+'|'+json[i].cliente+'\n');
+				info = info + '<br />ISBN:&#09;'+json[i].isbn+'<br />'+'Nombre:'+json[i].nombre+'<br />'+'Cantidad:'+json[i].cantidad+'<br />'+'Cliente:'+json[i].cliente+'<br />'+'=============================';
+			}
+			//alert(info);
+			
+			bootbox.alert(info, function() {
+                        console.log('Alert Callback');
+                        });
+			
+        }
+    }
+	API_HOST = API_HOST.replace('null','');
+    xmlHttp.open("GET", API_HOST+"/ventas/detalles/"+text); 
+    xmlHttp.send(); 
+	
+	
+}
+
+
+
 function guardar(){
 	console.log('guardar');
 	if(document.getElementById("stock").value == 0){

@@ -16098,3 +16098,28 @@ Caused by: java.lang.IllegalStateException: The file is locked: nio:D:/GIT_WHERR
 	at org.h2.mvstore.FileStore.open(FileStore.java:172)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:381)
 	... 118 more
+2023-05-19 19:31:59 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT NOMBRE,CANTIDAD FROM INVENTARIO_ENTITY
+SELECT[*] * FROM INVENTARIO_ENTITY"; SQL statement:
+SELECT nombre,cantidad FROM INVENTARIO_ENTITY
+SELECT * FROM INVENTARIO_ENTITY [42000-200]
+2023-05-19 19:33:22 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM INVENTARIO_ENTITY
+DELETE FROM[*] INVENTARIO_ENTITY WHERE ID = 38"; SQL statement:
+SELECT * FROM INVENTARIO_ENTITY
+delete from INVENTARIO_ENTITY where id = 38 [42000-200]
+2023-05-19 19:33:23 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM INVENTARIO_ENTITY
+DELETE FROM[*] INVENTARIO_ENTITY WHERE ID = 38"; SQL statement:
+SELECT * FROM INVENTARIO_ENTITY
+delete from INVENTARIO_ENTITY where id = 38 [42000-200]
+2023-05-19 19:33:26 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM INVENTARIO_ENTITY
+DELETE FROM[*] INVENTARIO_ENTITY WHERE ID = 38"; SQL statement:
+SELECT * FROM INVENTARIO_ENTITY
+delete from INVENTARIO_ENTITY where id = 38 [42000-200]
+2023-05-19 19:34:59 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM INVENTARIO_ENTITY
+DELETE FROM[*] INVENTARIO_ENTITY WHERE ID = 39"; SQL statement:
+SELECT * FROM INVENTARIO_ENTITY
+delete from INVENTARIO_ENTITY where id = 39 [42000-200]

@@ -89,6 +89,8 @@ public class UIController {
 		Integer ventasTotales = ventasRepository.totalVentas();
 		model.addAttribute("lv", lv);
 		model.addAttribute("ventasTotales", ventasTotales);
+		String host = env.getProperty("api.host");
+		model.addAttribute("api_host", host);
 		return "ventas";
 	}
 	

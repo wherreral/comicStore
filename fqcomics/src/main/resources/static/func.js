@@ -213,7 +213,8 @@ function searchDetail(text){
 			
         }
     }
-    xmlHttp.open("GET", HOST+"/ventas/detalles/"+text); 
+	API_HOST = API_HOST.replace('null','');
+    xmlHttp.open("GET", API_HOST+"/ventas/detalles/"+text); 
     xmlHttp.send(); 
 	
 	

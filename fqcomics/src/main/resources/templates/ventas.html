@@ -4,7 +4,12 @@
 <meta charset="ISO-8859-1">
 <title >Ventas</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<script th:inline="javascript">
+/*<![CDATA[*/
+    var API_HOST = /*[[${api_host}]]*/ 'default';
+    console.log('API_HOST:'+API_HOST);
+/*]]>*/
+</script>
 <script type="text/javascript" defer="true" th:src="@{func.js}"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
